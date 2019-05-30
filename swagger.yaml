@@ -1,0 +1,108 @@
+swagger: '2.0'
+info:
+  description: This is the simulator of API server. You can regist REST API endpoint with response.
+  version: 0.0.1
+  termsOfService: 'http://swagger.io/terms/'
+  title: API server simulator
+  contact:
+    email: kikikaikaikai@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+basePath: /
+schemes:
+  - http
+paths:
+  /endpoints:
+    get:
+      tags: []
+      summary: Get registed endpoints.
+      operationId: getEndpoints
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/mainEndpoint'
+    post:
+      tags: []
+      summary: Add a new endpoint.
+      description: Add a new endpoint which you want to use. You can add response format
+      operationId: postEndpoints
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 'Endpoint object. You can set endpoint, method and response format.'
+          required: true
+          schema:
+            $ref: '#/definitions/mainEndpoint'
+      responses:
+        '200':
+          description: Successfully added endpoint
+          schema:
+            $ref: '#/definitions/string'
+  '/endpoints/{endpoint}':
+    delete:
+      tags: []
+      summary: delete the endpoint.
+      description: Delete the endpoint.
+      operationId: deleteEndpointsEndpoint
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: endpoint
+          description: endpoint.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successfully deleted endpoint
+          schema:
+            $ref: '#/definitions/string'
+definitions:
+  mainEndpoint:
+    type: object
+    properties:
+      Endpoint:
+        type: string
+      Method:
+        type: string
+      Response:
+        $ref: '#/definitions/mainHTTPResponse'
+  mainHTTPHeaderField:
+    type: object
+    properties:
+      Type:
+        type: string
+      Value:
+        type: string
+  mainHTTPResponse:
+    type: object
+    properties:
+      Body:
+        type: string
+      Header:
+        type: array
+        items:
+          $ref: '#/definitions/mainHTTPHeaderField'
+  string:
+    type: string
+tags:
+  - name: ''
+    description: ''
+    externalDocs:
+      description: ''
+      url: 'http://example.com/'
+host: 'this is no global service.'
