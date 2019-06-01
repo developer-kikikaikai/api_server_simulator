@@ -71,6 +71,32 @@ paths:
           description: Successfully deleted endpoint
           schema:
             $ref: '#/definitions/string'
+    put:
+      tags: []
+      summary: Update the endpoint.
+      description: Update the endpoint which you want to use.
+      operationId: putEndpointsEndpoint
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: endpoint
+          description: endpoint.
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: 'Endpoint object. You can set endpoint, method and response format.'
+          required: true
+          schema:
+            $ref: '#/definitions/mainEndpoint'
+      responses:
+        '200':
+          description: Successfully added endpoint
+          schema:
+            $ref: '#/definitions/string'
 definitions:
   mainEndpoint:
     type: object
@@ -97,6 +123,9 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/mainHTTPHeaderField'
+      Status:
+        type: integer
+        format: int32
   string:
     type: string
 tags:
@@ -105,4 +134,4 @@ tags:
     externalDocs:
       description: ''
       url: 'http://example.com/'
-host: 'this is no global service.'
+host: 'localhost'
