@@ -14,6 +14,27 @@ schemes:
   - http
 paths:
   /endpoints:
+    delete:
+      tags: []
+      summary: delete the endpoint.
+      description: Delete the endpoint.
+      operationId: deleteEndpoints
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 'Endpoint object. You can set endpoint, method and response format.'
+          required: true
+          schema:
+            $ref: '#/definitions/mainExistingEndpoint'
+      responses:
+        '200':
+          description: Successfully deleted endpoint
+          schema:
+            $ref: '#/definitions/string'
     get:
       tags: []
       summary: Get registed endpoints.
@@ -50,32 +71,11 @@ paths:
           description: Successfully added endpoint
           schema:
             $ref: '#/definitions/string'
-  '/endpoints/{endpoint}':
-    delete:
-      tags: []
-      summary: delete the endpoint.
-      description: Delete the endpoint.
-      operationId: deleteEndpointsEndpoint
-      produces:
-        - application/json
-      consumes:
-        - application/json
-      parameters:
-        - in: path
-          name: endpoint
-          description: endpoint.
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Successfully deleted endpoint
-          schema:
-            $ref: '#/definitions/string'
     put:
       tags: []
       summary: Update the endpoint.
       description: Update the endpoint which you want to use.
-      operationId: putEndpointsEndpoint
+      operationId: putEndpoints
       produces:
         - application/json
       consumes:
@@ -91,7 +91,7 @@ paths:
           description: 'Endpoint object. You can set endpoint, method and response format.'
           required: true
           schema:
-            $ref: '#/definitions/mainEndpoint'
+            $ref: '#/definitions/mainExistingEndpoint'
       responses:
         '200':
           description: Successfully added endpoint
@@ -107,6 +107,13 @@ definitions:
         type: string
       Response:
         $ref: '#/definitions/mainHTTPResponse'
+  mainExistingEndpoint:
+    type: object
+    properties:
+      Endpoint:
+        type: string
+      Method:
+        type: string
   mainHTTPHeaderField:
     type: object
     properties:
