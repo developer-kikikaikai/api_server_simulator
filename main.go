@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"./controllers"
+	"github.com/developer-kikikaikai/api_server_simulator/controllers"
 )
 
 func main() {

@@ -1,8 +1,8 @@
 package factory
 
 import (
-	"../gateways"
-	"../usecases"
+	"github.com/developer-kikikaikai/api_server_simulator/gateways"
+	"github.com/developer-kikikaikai/api_server_simulator/usecases"
 )
 
 //define all interface

@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"../datatypes"
-	"../factory"
+	"github.com/developer-kikikaikai/api_server_simulator/datatypes"
+	"github.com/developer-kikikaikai/api_server_simulator/factory"
 	"github.com/gin-gonic/gin"
 	"github.com/savaki/swag"
 	"github.com/savaki/swag/endpoint"

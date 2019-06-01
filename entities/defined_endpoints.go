@@ -3,7 +3,7 @@ package entities
 import (
 	"errors"
 
-	"../datatypes"
+	"github.com/developer-kikikaikai/api_server_simulator/datatypes"
 )
 
 type DefinedEndpoints struct {

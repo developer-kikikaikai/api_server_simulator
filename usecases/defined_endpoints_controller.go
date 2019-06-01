@@ -1,7 +1,7 @@
 package usecases
 
 import (
-	"../datatypes"
+	"github.com/developer-kikikaikai/api_server_simulator/datatypes"
 )
 
 type DefinedEndpointController interface {

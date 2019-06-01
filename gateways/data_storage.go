@@ -3,7 +3,7 @@ package gateways
 import (
 	"errors"
 
-	"../datatypes"
+	"github.com/developer-kikikaikai/api_server_simulator/datatypes"
 )
 
 type DataStorage struct {
