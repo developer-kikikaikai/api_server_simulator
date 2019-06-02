@@ -30,6 +30,14 @@ type ExistingEndpoint struct {
 	Method   string `json:method`
 }
 
+const PostSuccess = "Success to add Endpoint"
+const PutSuccess = "Success to update Endpoint"
+const DeleteSuccess = "Success to delete Endpoint"
+const ParseFailed = "Failed to parse request body"
+const FailedToAdd = "Failed to add request Endpoint"
+const FailedToUpdate = "Failed to update request Endpoint"
+const FailedToDelete = "Failed to delete request Endpoint"
+
 func IsEqualEndpointKey(src *Endpoint, dist *Endpoint) bool {
 	return (src.Endpoint == dist.Endpoint) && (src.Method == dist.Method)
 }

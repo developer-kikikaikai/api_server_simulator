@@ -1,0 +1,68 @@
+{
+
+	"test add new endpoint":{
+			"uri":"/endpoints",
+			"method":"POST",
+			"body_data":"{\"endpoint\":\"/testuri\",\"method\":\"GET\",\"Response\":{\"status\":200, \"body\":\"[1,2,3,4,5]\"}}",
+			"result_status":"200",
+			"result_body":"\"Success to add Endpoint\""
+	},
+	"test access new endpoint":{
+			"uri":"/testuri",
+			"method":"GET",
+			"result_status":"200",
+			"result_body":"[1,2,3,4,5]"
+	},
+	"test re-add endpoint":{
+			"uri":"/endpoints",
+			"method":"POST",
+			"body_data":"{\"endpoint\":\"/testuri\",\"method\":\"GET\",\"Response\":{\"status\":400, \"body\":\"[1,2]\"}}",
+			"result_status":"400",
+			"result_body":"\"Failed to add request Endpoint\""
+	},
+	"test update endpoints":{
+			"uri":"/endpoints",
+			"method":"PUT",
+			"body_data":"{\"endpoint\":\"/testuri\",\"method\":\"GET\",\"Response\":{\"status\":200, \"body\":\"[1,2]\"}}",
+			"result_status":"200",
+			"result_body":"\"Success to update Endpoint\""
+	},
+	"test access updating endpoints":{
+			"uri":"/testuri",
+			"method":"GET",
+			"result_status":"200",
+			"result_body":"[1,2]"
+	},
+	"test delete endpoints":{
+			"uri":"/endpoints",
+			"method":"DELETE",
+			"body_data":"{\"endpoint\":\"/testuri\",\"method\":\"GET\"}",
+			"result_status":"200",
+			"result_body":"\"Success to delete Endpoint\""
+	},
+	"test access deleting endpoints":{
+			"uri":"/testuri",
+			"method":"GET",
+			"result_status":"404"
+	},
+	"test update invalid endpoints":{
+			"uri":"/endpoints",
+			"method":"PUT",
+			"body_data":"{\"endpoint\":\"/testuri\",\"method\":\"GET\", \"Response\":{\"status\":200, \"body\":[1,2]}}",
+			"result_status":"400",
+			"result_body":"\"Failed to update request Endpoint\""
+	},
+	"test delete invalid endpoints":{
+			"uri":"/endpoints",
+			"method":"DELETE",
+			"body_data":"{\"endpoint\":\"/testuri\",\"method\":\"GET\"}",
+			"result_status":"400",
+			"result_body":"\"Failed to delete request Endpoint\""
+	},
+	"test access empty endpoints":{
+			"uri":"/endpoints",
+			"method":"GET",
+			"result_body":"",
+			"result_status":"200"
+	}
+}

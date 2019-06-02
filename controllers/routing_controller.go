@@ -24,19 +24,19 @@ func createSwagAPI() *swagger.API {
 		endpoint.Handler(POSTEndpointsHandler),
 		endpoint.Description("Add a new endpoint which you want to use. You can add response format"),
 		endpoint.Body(datatypes.Endpoint{}, "Endpoint object. You can set endpoint, method and response format.", true),
-		endpoint.Response(http.StatusOK, "Success.", "Successfully added endpoint"),
+		endpoint.Response(http.StatusOK, datatypes.PostSuccess, "Successfully added endpoint"),
 	)
 	rest_put := endpoint.New("put", uri, "Update the endpoint.",
 		endpoint.Handler(PUTEndpointsHandler),
 		endpoint.Description("Update the endpoint which you want to use."),
 		endpoint.Body(datatypes.Endpoint{}, "Endpoint object. You can set endpoint, method and response format.", true),
-		endpoint.Response(http.StatusOK, "Success.", "Successfully added endpoint"),
+		endpoint.Response(http.StatusOK, datatypes.PutSuccess, "Successfully added endpoint"),
 	)
 	rest_delete := endpoint.New("delete", uri, "delete the endpoint.",
 		endpoint.Handler(DELETEEndpointsHandler),
 		endpoint.Description("Delete the endpoint."),
 		endpoint.Body(datatypes.ExistingEndpoint{}, "Endpoint object. You can set endpoint, method and response format.", true),
-		endpoint.Response(http.StatusOK, "Success", "Successfully deleted endpoint"),
+		endpoint.Response(http.StatusOK, datatypes.DeleteSuccess, "Successfully deleted endpoint"),
 	)
 
 	return swag.New(

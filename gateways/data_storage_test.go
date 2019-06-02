@@ -202,10 +202,11 @@ func TestDelete(t *testing.T) {
 	}
 }
 
+/*
 func TestIsVisuableAPIDefinition(t *testing.T) {
 	t.Fatal("failed test")
 }
 
 func TestGetAPIEndpoint(t *testing.T) {
 	t.Fatal("failed test")
-}
+}*/

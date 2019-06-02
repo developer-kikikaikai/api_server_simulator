@@ -12,50 +12,51 @@ type APIControllerImpl struct {
 }
 
 func (this *APIControllerImpl) Get(c *gin.Context) {
-	c.JSON(http.StatusOK, entities.GetAll())
+	entities := entities.GetAll()
+	c.JSON(http.StatusOK, entities)
 }
 
 func (this *APIControllerImpl) Post(c *gin.Context) {
 	req_body := new(datatypes.Endpoint)
 	if err := c.Bind(req_body); err != nil {
-		c.JSON(http.StatusBadRequest, "Failed to parse request body")
+		c.JSON(http.StatusBadRequest, datatypes.ParseFailed)
 		return
 	}
 
 	if err := entities.Add(req_body); err != nil {
-		c.JSON(http.StatusBadRequest, "Failed to add request Endpoint")
+		c.JSON(http.StatusBadRequest, datatypes.FailedToAdd)
 		return
 	}
 
-	c.JSON(http.StatusOK, "Success to add Endpoint")
+	c.JSON(http.StatusOK, datatypes.PostSuccess)
 }
 
 func (this *APIControllerImpl) Put(c *gin.Context) {
 	req_body := new(datatypes.Endpoint)
 	if err := c.Bind(req_body); err != nil {
-		c.JSON(http.StatusBadRequest, "Failed to parse request body")
+		c.JSON(http.StatusBadRequest, datatypes.ParseFailed)
 		return
 	}
 
 	if err := entities.Update(req_body); err != nil {
-		c.JSON(http.StatusBadRequest, "Failed to update request Endpoint")
+		c.JSON(http.StatusBadRequest, datatypes.FailedToUpdate)
 		return
 	}
 
-	c.JSON(http.StatusOK, "Success to update Endpoint")
+	c.JSON(http.StatusOK, datatypes.PutSuccess)
 }
 
 func (this *APIControllerImpl) Delete(c *gin.Context) {
 	req_body := new(datatypes.ExistingEndpoint)
 	if err := c.Bind(req_body); err != nil {
-		c.JSON(http.StatusBadRequest, "Failed to parse request body")
+		c.JSON(http.StatusBadRequest, datatypes.ParseFailed)
 		return
 	}
 
 	if err := entities.Delete(req_body.Endpoint, req_body.Method); err != nil {
-		c.JSON(http.StatusBadRequest, "Failed to delete request Endpoint")
+		c.JSON(http.StatusBadRequest, datatypes.FailedToDelete)
 		return
 	}
 
-	c.JSON(http.StatusOK, "Success to delete Endpoint")
+	c.JSON(http.StatusOK, datatypes.DeleteSuccess)
 }
