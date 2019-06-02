@@ -1,21 +1,22 @@
 package controllers
 
 import (
-	"io"
-
+	"github.com/developer-kikikaikai/api_server_simulator/usecases"
 	"github.com/gin-gonic/gin"
 )
 
 func GETEndpointsHandler(c *gin.Context) {
-	io.WriteString(c.Writer, "Insert your code here")
+	usecases.GetAPIController().Get(c)
 }
 
 func POSTEndpointsHandler(c *gin.Context) {
-	io.WriteString(c.Writer, "Insert your code here")
+	usecases.GetAPIController().Post(c)
 }
+
 func PUTEndpointsHandler(c *gin.Context) {
-	io.WriteString(c.Writer, "Insert your code here")
+	usecases.GetAPIController().Put(c)
 }
+
 func DELETEEndpointsHandler(c *gin.Context) {
-	io.WriteString(c.Writer, "Insert your code here")
+	usecases.GetAPIController().Delete(c)
 }

@@ -16,15 +16,15 @@ func (this *DataStorage) Get(uri string, method string) datatypes.Endpoint {
 	return datatypes.Endpoint{}
 }
 
-func (this *DataStorage) Add(endpoint datatypes.Endpoint) error {
+func (this *DataStorage) Add(endpoint *datatypes.Endpoint) error {
 	return errors.New("Not implement yet")
 }
 
-func (this *DataStorage) Update(endpoint datatypes.Endpoint) error {
+func (this *DataStorage) Update(endpoint *datatypes.Endpoint) error {
 	return errors.New("Not implement yet")
 }
 
-func (this *DataStorage) Delete(endpoint datatypes.Endpoint) error {
+func (this *DataStorage) Delete(uri string, method string) error {
 	return errors.New("Not implement yet")
 }
 

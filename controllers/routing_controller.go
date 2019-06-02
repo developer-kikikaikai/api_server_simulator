@@ -5,7 +5,8 @@ import (
 	"net/http"
 
 	"github.com/developer-kikikaikai/api_server_simulator/datatypes"
-	"github.com/developer-kikikaikai/api_server_simulator/factory"
+	"github.com/developer-kikikaikai/api_server_simulator/repository"
+	"github.com/developer-kikikaikai/api_server_simulator/usecases"
 	"github.com/gin-gonic/gin"
 	"github.com/savaki/swag"
 	"github.com/savaki/swag/endpoint"
@@ -13,7 +14,7 @@ import (
 )
 
 func createSwagAPI() *swagger.API {
-	uri := factory.GetDataStorageAccesser().GetAPIEndpoint()
+	uri := repository.GetDataStorageAccesser().GetAPIEndpoint()
 	/*add endpoint /endpints to regist some request */
 	rest_get := endpoint.New("get", uri, "Get registed endpoints.",
 		endpoint.Handler(GETEndpointsHandler),
@@ -28,8 +29,7 @@ func createSwagAPI() *swagger.API {
 	rest_put := endpoint.New("put", uri, "Update the endpoint.",
 		endpoint.Handler(PUTEndpointsHandler),
 		endpoint.Description("Update the endpoint which you want to use."),
-		endpoint.Path("endpoint", "string", "endpoint.", true),
-		endpoint.Body(datatypes.ExistingEndpoint{}, "Endpoint object. You can set endpoint, method and response format.", true),
+		endpoint.Body(datatypes.Endpoint{}, "Endpoint object. You can set endpoint, method and response format.", true),
 		endpoint.Response(http.StatusOK, "Success.", "Successfully added endpoint"),
 	)
 	rest_delete := endpoint.New("delete", uri, "delete the endpoint.",
@@ -65,9 +65,8 @@ func HandleDefinedEndpoints() gin.HandlerFunc {
 		method := c.Request.Method
 		uri := c.Request.URL.Path
 
-		definedEndpointCtrl := factory.GetDefinedEndpointController()
-		if definedEndpointCtrl.IsHandled(method, uri) {
-			endpoint_info := definedEndpointCtrl.GetResponse(method, uri)
+		if endpoint_info, err := usecases.GetDefinedEndpointController().GetDefinedResponse(method, uri); err == nil {
+			//there is the defined endpoint
 			addResponse(c, endpoint_info)
 		}
 		log.Println("before logic")
@@ -90,7 +89,7 @@ func CreateRouter() *gin.Engine {
 	router.Use(HandleDefinedEndpoints())
 
 	//enable swagger endpoint if enable option
-	if factory.GetDataStorageAccesser().IsVisuableAPIDefinition() {
+	if repository.GetDataStorageAccesser().IsVisuableAPIDefinition() {
 		router.GET("/swagger", gin.WrapH(api.Handler(true)))
 	}
 	return router
