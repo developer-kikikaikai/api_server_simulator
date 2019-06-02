@@ -1,5 +1,13 @@
 package datatypes
 
+/*data format for Configuration*/
+type HTTPSConfiguration struct {
+	Port            int    `json:port`
+	CertificatePath string `json:certificate`
+	PrivatekeyPath  string `json:privatekeyPath`
+}
+
+/*data format for API request*/
 type HTTPHeaderField struct {
 	Type  string `json:type`
 	Value string `json:value`

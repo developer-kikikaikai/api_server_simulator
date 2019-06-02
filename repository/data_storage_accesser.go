@@ -11,4 +11,5 @@ type DataStorageAccesser interface {
 	Delete(uri string, method string) error
 	IsVisuableAPIDefinition() bool
 	GetAPIEndpoint() string
+	GetHTTPSConfiguration() datatypes.HTTPSConfiguration
 }

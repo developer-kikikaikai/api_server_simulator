@@ -146,3 +146,7 @@ func (this *DataStorage) IsVisuableAPIDefinition() bool {
 func (this *DataStorage) GetAPIEndpoint() string {
 	return "/endpoints"
 }
+
+func (this *DataStorage) GetHTTPSConfiguration() datatypes.HTTPSConfiguration {
+	return datatypes.HTTPSConfiguration{61443, "", ""}
+}
