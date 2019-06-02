@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -15,7 +14,6 @@ import (
 
 func createSwagAPI() *swagger.API {
 	uri := factory.GetDataStorageAccesser().GetAPIEndpoint()
-	fmt.Printf("%+v\n", uri)
 	/*add endpoint /endpints to regist some request */
 	rest_get := endpoint.New("get", uri, "Get registed endpoints.",
 		endpoint.Handler(GETEndpointsHandler),
@@ -51,8 +49,27 @@ func createSwagAPI() *swagger.API {
 	)
 }
 
+func addResponseHeaders(c *gin.Context, response *datatypes.HTTPResponse) {
+	for _, header := range response.Header {
+		c.Header(header.Type, header.Value)
+	}
+}
+
+func addResponse(c *gin.Context, response *datatypes.HTTPResponse) {
+	addResponseHeaders(c, response)
+	c.String(response.Status, response.Body)
+}
+
 func HandleDefinedEndpoints() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		method := c.Request.Method
+		uri := c.Request.URL.Path
+
+		definedEndpointCtrl := factory.GetDefinedEndpointController()
+		if definedEndpointCtrl.IsHandled(method, uri) {
+			endpoint_info := definedEndpointCtrl.GetResponse(method, uri)
+			addResponse(c, endpoint_info)
+		}
 		log.Println("before logic")
 		c.Next()
 	}
