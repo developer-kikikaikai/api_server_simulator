@@ -2,6 +2,7 @@ package entities
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/developer-kikikaikai/api_server_simulator/datatypes"
 	"github.com/developer-kikikaikai/api_server_simulator/repository"
@@ -13,8 +14,12 @@ func GetAll() []datatypes.Endpoint {
 
 func get(uri string, method string) (*datatypes.Endpoint, error) {
 	endpoints := repository.GetDataStorageAccesser().GetAll()
+	fmt.Printf("check uri. Current data is %v\n", endpoints)
+	fmt.Printf("uri %v, method %v\n", uri, method)
 	for _, endpoint_info := range endpoints {
+		fmt.Printf("check uri. Current data is %v\n", endpoint_info)
 		if (endpoint_info.Endpoint != uri) || (endpoint_info.Method != method) {
+			fmt.Printf("continue %v %v %v %v \n", endpoint_info.Endpoint, uri, endpoint_info.Method, method)
 			continue
 		}
 		return &endpoint_info, nil
@@ -41,5 +46,6 @@ func GetResponse(uri string, method string) (*datatypes.HTTPResponse, error) {
 		return nil, err
 	}
 
+	fmt.Printf("GetResponse: %v\n", endpoint_info.Response)
 	return &endpoint_info.Response, nil
 }

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 
 	"github.com/developer-kikikaikai/api_server_simulator/datatypes"
@@ -65,11 +65,11 @@ func HandleDefinedEndpoints() gin.HandlerFunc {
 		method := c.Request.Method
 		uri := c.Request.URL.Path
 
-		if endpoint_info, err := usecases.GetDefinedEndpointController().GetDefinedResponse(method, uri); err == nil {
+		fmt.Printf("method:%v, uri:%v\n", method, uri)
+		if endpoint_info, err := usecases.GetDefinedEndpointController().GetDefinedResponse(uri, method); err == nil {
 			//there is the defined endpoint
 			addResponse(c, endpoint_info)
 		}
-		log.Println("before logic")
 		c.Next()
 	}
 }
