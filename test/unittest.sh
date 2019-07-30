@@ -4,7 +4,7 @@ cd ../
 go test -tags=testdb ./...
 
 #start main process
-go run main.go -tags=testdb&
+go run -tags=testdb main.go &
 while [ true ];
 do
 	#this test can run with no go process
