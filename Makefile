@@ -9,3 +9,5 @@ ut:
 	make -C test
 clean-cache:
 	rm -rf vendor
+container:
+	make -C container
