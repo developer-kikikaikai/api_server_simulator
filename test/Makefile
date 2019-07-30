@@ -1,0 +1,2 @@
+all:
+	./unittest.sh
