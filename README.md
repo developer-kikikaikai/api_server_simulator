@@ -53,21 +53,30 @@ dep ensure
 ```
 
 5. Run main.go
-`go run main.go`
+`go run main.go` or `make`
 
-TODO: Create docker container to run server easier.  
 TODO: Save configuration to DB.
 
 # How to do test it?
 
 Please use `go test -tags=testdb -v ./...`.  
-*Please run with "-tags=testdb" option to use DB for test.
+* Please run with "-tags=testdb" option to use DB for test.
 
 And if you run it on Linux, you can do the API test.  
 Please call `./unittest.sh` in test directory.  
 
 TODO: Almost REST API tests have already finished. But I only haven't created new endpoint test which defined specific HTTP headers. 
 (The case if requested json data has headers.)
+
+# How to run docker container
+
+Please call `make container` on root directory.
+* You can import api data to put the "import.json" file in docker dir
+* Please install docker and ruby
+
+```
+sudo apt install -y docker ruby
+```
 
 # Others
 
