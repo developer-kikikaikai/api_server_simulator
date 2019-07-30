@@ -72,6 +72,27 @@ TODO: Almost REST API tests have already finished. But I only haven't created ne
 
 Please call `make container` on root directory.
 * You can import api data to put the "import.json" file in docker dir
+  The import.json is same format of GET endpoints request, as
+
+```
+[
+{
+  "endpoint": "string",
+  "method": "string",
+  "response": {
+    "body": "string",
+    "header": [
+      {
+        "type": "string",
+        "value": "string"
+      }
+    ],
+    "status": 200
+  }
+}
+]
+```
+
 * Please install docker and ruby
 
 ```
