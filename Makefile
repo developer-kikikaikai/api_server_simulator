@@ -10,4 +10,8 @@ ut:
 clean-cache:
 	rm -rf vendor
 container:
-	make -C container
+	make -C docker
+clean-container:
+	make -C docker clean
+clean-container-image:
+	make -C docker clean-image

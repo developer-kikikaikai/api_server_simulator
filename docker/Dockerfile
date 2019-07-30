@@ -8,7 +8,6 @@ LABEL maintainer="developer-kikikaikai <kikikaikaikai@gmail.com>"
 
 # COPY FILE
 COPY startServices.sh /usr/local/sbin/startServices.sh
-#COPY install.sh /usr/local/sbin/install.sh
 
 # RUN: action to build docker
 RUN chmod +x /usr/local/sbin/startServices.sh

@@ -1,3 +1,4 @@
 Gopkg.lock
 vendor
 api_server_simulator
+container/import.json
