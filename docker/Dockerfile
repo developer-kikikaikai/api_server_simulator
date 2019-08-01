@@ -6,11 +6,7 @@ ENV DEBCONF_NOWARNINGS yes
 # user
 LABEL maintainer="developer-kikikaikai <kikikaikaikai@gmail.com>"
 
-# COPY FILE
-#COPY startServices.sh /usr/local/sbin/startServices.sh
-
 # RUN: action to build docker
-#RUN chmod +x /usr/local/sbin/startServices.sh
 RUN echo "## Setup base tools"
 RUN apt update
 RUN apt install -y iproute2 iputils-ping curl
