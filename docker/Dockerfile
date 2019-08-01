@@ -7,10 +7,10 @@ ENV DEBCONF_NOWARNINGS yes
 LABEL maintainer="developer-kikikaikai <kikikaikaikai@gmail.com>"
 
 # COPY FILE
-COPY startServices.sh /usr/local/sbin/startServices.sh
+#COPY startServices.sh /usr/local/sbin/startServices.sh
 
 # RUN: action to build docker
-RUN chmod +x /usr/local/sbin/startServices.sh
+#RUN chmod +x /usr/local/sbin/startServices.sh
 RUN echo "## Setup base tools"
 RUN apt update
 RUN apt install -y iproute2 iputils-ping curl
@@ -28,6 +28,7 @@ RUN apt -y install go-dep
 RUN echo "## get code"
 RUN go get -v github.com/developer-kikikaikai/api_server_simulator
 RUN cd /root/go/src/github.com/developer-kikikaikai/api_server_simulator && make
+RUN chmod +x /root/go/src/github.com/developer-kikikaikai/api_server_simulator/docker/startServices.sh
 
 # execute command and port to run docker
-ENTRYPOINT /usr/local/sbin/startServices.sh
+ENTRYPOINT /root/go/src/github.com/developer-kikikaikai/api_server_simulator/docker/startServices.sh
