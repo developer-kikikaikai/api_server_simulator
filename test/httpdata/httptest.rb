@@ -29,8 +29,8 @@ mapped = json_str.map do |testtitle, testdata|
 	end
 
 	puts("Test:#{testtitle}")
-	puts("curl http://localhost:8080#{testdata['uri']} -w 'http_code:%{http_code}\n' -X #{testdata['method']} #{auth_str} #{body_str}")
-	result=`curl http://localhost:8080#{testdata['uri']} -w 'http_code:%{http_code}\n' -X #{testdata['method']} #{auth_str} #{body_str} 2> /dev/null`.split(/http_code:/)
+	puts("curl \"http://localhost:8080#{testdata['uri']}\" -w 'http_code:%{http_code}\n' -X #{testdata['method']} #{auth_str} #{body_str}")
+	result=`curl "http://localhost:8080#{testdata['uri']}" -w 'http_code:%{http_code}\n' -X #{testdata['method']} #{auth_str} #{body_str} 2> /dev/null`.split(/http_code:/)
 	#result 0=>body, 1=>status code
 	if result[INDEX_STATUS_CODE].to_i != testdata['result_status'].to_i
 		puts("#######{testtitle}:Failed to check status code, expected_value:#{testdata['result_status']}, result:#{result[INDEX_STATUS_CODE]}")

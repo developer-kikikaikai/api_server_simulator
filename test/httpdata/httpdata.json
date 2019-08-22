@@ -59,6 +59,26 @@
 			"result_status":"400",
 			"result_body":"\"Failed to delete request Endpoint\""
 	},
+	"test add new endpoint with queries":{
+			"uri":"/endpoints",
+			"method":"POST",
+			"body_data":"{\"endpoint\":\"/testuri?key1=value1&key2=value2\",\"method\":\"GET\",\"Response\":{\"status\":200, \"body\":\"[1,2,3,4,5]\"}}",
+			"result_status":"200",
+			"result_body":"\"Success to add Endpoint\""
+	},
+	"test access endpoints with queries":{
+			"uri":"/testuri?key1=value1&key2=value2",
+			"method":"GET",
+			"result_status":"200",
+			"result_body":"[1,2,3,4,5]"
+	},
+	"test delete endpoints with queries":{
+			"uri":"/endpoints",
+			"method":"DELETE",
+			"body_data":"{\"endpoint\":\"/testuri?key1=value1&key2=value2\",\"method\":\"GET\"}",
+			"result_status":"200",
+			"result_body":"\"Success to delete Endpoint\""
+	},
 	"test access empty endpoints":{
 			"uri":"/endpoints",
 			"method":"GET",
