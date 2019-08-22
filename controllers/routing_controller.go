@@ -63,8 +63,7 @@ func addResponse(c *gin.Context, response *datatypes.HTTPResponse) {
 func HandleDefinedEndpoints() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		method := c.Request.Method
-		uri := c.Request.URL.Path
-
+		uri := c.Request.URL.String()
 		fmt.Printf("method:%v, uri:%v\n", method, uri)
 		if endpoint_info, err := usecases.GetDefinedEndpointController().GetDefinedResponse(uri, method); err == nil {
 			//there is the defined endpoint
